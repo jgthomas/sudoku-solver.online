@@ -4,6 +4,9 @@
 #include <stdbool.h>
 
 
+const char *DIGITS = "0123456789";
+
+
 typedef struct Square {
         int num;
         bool part_of_puzzle;
@@ -38,6 +41,7 @@ Square *make_square(int num, bool part_of_puzzle);
 void print_solution(int grid_size, Grid *puzzle);
 char *solution(char *problem);
 Grid *make_grid(int grid_size, char *input_puzzle);
+void *extract_solution(Grid *puzzle);
 
 
 int main(int argc, char **argv)
@@ -48,7 +52,10 @@ int main(int argc, char **argv)
                 exit(1);
         }
 
-        solution(argv[1]);
+        char *puzzle_solution = solution(argv[1]);
+        printf("%s\n", puzzle_solution);
+        //delete_puzzle(puzzle);
+        free(puzzle_solution);
 }
 
 
@@ -56,17 +63,40 @@ char *solution(char *problem)
 {
         Grid *puzzle = make_grid(9, problem);
         solve_puzzle(puzzle);
-        print_solution(9, puzzle);
+        char *puzzle_solution = extract_solution(puzzle);
         delete_puzzle(puzzle);
+        return puzzle_solution;
+        //print_solution(9, puzzle);
+}
+
+
+void *extract_solution(Grid *puzzle)
+{
+        int length = puzzle->ROW * puzzle->COL;
+        char *puzzle_solution = malloc(sizeof(char) * length+1);
+        int i;
+        for (i = 0; i < length; i++)
+        {
+                //printf("%d", puzzle->squares[i]->num);
+                puzzle_solution[i] = DIGITS[puzzle->squares[i]->num];
+        }
+        puzzle_solution[i] = '\0';
+        //printf("%s\n", puzzle_solution);
+        //free(puzzle_solution);
+        return puzzle_solution;
 }
 
 
 void print_solution(int grid_size, Grid *puzzle)
 {
+        char *puzzle_solution = malloc(sizeof(char) * grid_size * grid_size);
         for (int i = 0, len = grid_size * grid_size; i < len; i++)
         {
-                printf("%d", puzzle->squares[i]->num);
+                //printf("%d", puzzle->squares[i]->num);
+                puzzle_solution[i] = DIGITS[puzzle->squares[i]->num];
         }
+        printf("%s\n", puzzle_solution);
+        free(puzzle_solution);
 }
 
 
