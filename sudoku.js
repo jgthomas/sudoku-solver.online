@@ -10,7 +10,7 @@ function buildInputPuzzle() {
             inputPuzzle[i] = number;
         }
     }
-    return inputPuzzle;
+    return inputPuzzle.join("");
 }
 
 
