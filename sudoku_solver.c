@@ -69,9 +69,16 @@ char *solution(char *problem)
 
 void *extract_solution(Grid *puzzle)
 {
+        int i;
         int length = puzzle->ROW * puzzle->COL;
         char *puzzle_solution = malloc(sizeof(char) * length+1);
-        int i;
+
+        if (puzzle_solution == NULL)
+        {
+                fprintf(stderr, "Failed to allocate memory for solution\n");
+                exit(EXIT_FAILURE);
+        }
+
         for (i = 0; i < length; i++)
         {
                 puzzle_solution[i] = DIGITS[puzzle->squares[i]->num];
