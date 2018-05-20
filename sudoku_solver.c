@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <math.h>
 #include <stdlib.h>
 #include <stdbool.h>
 
@@ -33,6 +35,39 @@ bool col_contains(Grid *puzzle, int col, int find);
 bool row_contains(Grid *puzzle, int row, int find);
 bool num_allowed(Grid *puzzle, int row, int col, int num);
 Square *make_square(int num, bool part_of_puzzle);
+void print_solution(int grid_size, Grid *puzzle);
+char *solution(char *problem);
+Grid *make_grid(int grid_size, char *input_puzzle);
+
+
+int main(int argc, char **argv)
+{
+        if (argc < 2)
+        {
+                printf("no!\n");
+                exit(1);
+        }
+
+        solution(argv[1]);
+}
+
+
+char *solution(char *problem)
+{
+        Grid *puzzle = make_grid(9, problem);
+        solve_puzzle(puzzle);
+        print_solution(9, puzzle);
+        delete_puzzle(puzzle);
+}
+
+
+void print_solution(int grid_size, Grid *puzzle)
+{
+        for (int i = 0, len = grid_size * grid_size; i < len; i++)
+        {
+                printf("%d", puzzle->squares[i]->num);
+        }
+}
 
 
 void solve_puzzle(Grid *puzzle)
@@ -122,7 +157,7 @@ Grid *make_grid(int grid_size, char *input_puzzle)
         {
                 for (int col = 0; col < puzzle->COL; col++)
                 {
-                        int num = atoi(input_puzzle[row * puzzle->ROW + col]);
+                        int num = input_puzzle[row * puzzle->ROW + col] - '0';
                         Square *square;
 
                         if (num == 0)
