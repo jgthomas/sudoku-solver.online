@@ -30,3 +30,16 @@ body {
   align-items: center;
   justify-items: center;
 }
+
+.number-input {
+  font-size: 150%;
+  background-color: #444;
+  color: #fff;
+  width: 50%;
+  height: 75%;
+  margin: auto;
+  border: none;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
