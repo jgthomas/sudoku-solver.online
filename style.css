@@ -8,6 +8,8 @@ body {
   grid-gap: 5px;
   background-color: #fff;
   color: #444;
+  margin: auto;
+  width: 450px;
 }
 
 .wrapper {
