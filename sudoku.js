@@ -2,14 +2,19 @@ const NUM_OF_SQUARES = 81;
 
 
 function buildInputPuzzle() {
-    const inputPuzzle = [];
-    inputPuzzle.push(document.getElementById(`box0`));
+    const inputPuzzle = new Array(81).fill("0");
+    for (let i = 0; i < 1; i++) {
+        let number = document.getElementById(`box${i}`).value;
+        if (number) {
+            inputPuzzle[i] = number;
+        }
+    }
     return inputPuzzle;
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("solve").addEventListener("click", () => {
-        console.log("hello");
+        console.log(buildInputPuzzle());
     });
 });
