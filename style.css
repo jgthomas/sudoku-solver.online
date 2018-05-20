@@ -2,6 +2,12 @@ body {
   margin: 40px;
 }
 
+.title {
+  text-align: center;
+  color: #444;
+  margin-bottom: 2em;
+}
+
 .outer-box {
   display: grid;
   grid-template-columns: 150px 150px 150px;
