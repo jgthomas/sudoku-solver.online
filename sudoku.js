@@ -13,6 +13,20 @@ function buildInputPuzzle() {
 }
 
 
+function clearPuzzle() {
+    for (let i = 0; i < NUM_OF_SQUARES; i++) {
+        document.getElementById(`box${i}`).value = "";
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("clear").addEventListener("click", () => {
+        clearPuzzle();
+    });
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("solve").addEventListener("click", () => {
         console.log(buildInputPuzzle());
