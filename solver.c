@@ -29,11 +29,6 @@ static void *extract_solution(char *puzzle_solution);
 
 int main(void)
 {
-        //char *PUZZLE = "100506800500000010020430905450009080301040706070100052709062040040000001005804009";
-        //char problem[81] = {'\0'};
-        //strncpy(problem, PUZZLE, sizeof(problem));
-        //char *puzzle_solution = solution(problem);
-        //printf("%s\n", puzzle_solution);
         printf("WASM Loaded\n");
         return EXIT_SUCCESS;
 }
