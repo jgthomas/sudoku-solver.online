@@ -28,12 +28,12 @@ static void *extract_solution(char *puzzle_solution);
 
 int main(void)
 {
-    char *PUZZLE = "100506800500000010020430905450009080301040706070100052709062040040000001005804009";
-    char problem[81] = {'\0'};
-    strncpy(problem, PUZZLE, sizeof(problem));
-    char *puzzle_solution = solution(problem);
-    printf("%s\n", puzzle_solution);
-    return EXIT_SUCCESS;
+        char *PUZZLE = "100506800500000010020430905450009080301040706070100052709062040040000001005804009";
+        char problem[81] = {'\0'};
+        strncpy(problem, PUZZLE, sizeof(problem));
+        char *puzzle_solution = solution(problem);
+        printf("%s\n", puzzle_solution);
+        return EXIT_SUCCESS;
 }
 
 
@@ -61,55 +61,55 @@ static void *extract_solution(char *puzzle_solution)
 
 static void solve_puzzle()
 {
-    int row = 0;
-    int col = 0;
-    bool moving_forward = true;
-    int current_square_num = row * GRID_SIZE + col;
+        int row = 0;
+        int col = 0;
+        bool moving_forward = true;
+        int current_square_num = row * GRID_SIZE + col;
 
-    while (current_square_num < TOTAL_SQUARES)
-    {
-        if (part_of_puzzle[row][col])
+        while (current_square_num < TOTAL_SQUARES)
         {
-            if (moving_forward)
+            if (part_of_puzzle[row][col])
+            {
+                if (moving_forward)
+                {
+                    col++;
+                }
+                else
+                {
+                    col--;
+                }
+            }
+            else if (fill_square(row, col))
             {
                 col++;
+                moving_forward = true;
             }
             else
             {
                 col--;
+                moving_forward = false;
             }
-        }
-        else if (fill_square(row, col))
-        {
-            col++;
-            moving_forward = true;
-        }
-        else
-        {
-            col--;
-            moving_forward = false;
-        }
 
-        if (col >= GRID_SIZE)
-        {
-            row++;
-            col = 0;
-        }
-        else if (col < 0)
-        {
-            if (row == 0)
+            if (col >= GRID_SIZE)
             {
-                printf("Cannot solve puzzle!\n");
-                exit(EXIT_FAILURE);
+                row++;
+                col = 0;
             }
-            else
+            else if (col < 0)
             {
-                row--;
-                col = GRID_SIZE - 1;
+                if (row == 0)
+                {
+                    printf("Cannot solve puzzle!\n");
+                    exit(EXIT_FAILURE);
+                }
+                else
+                {
+                    row--;
+                    col = GRID_SIZE - 1;
+                }
             }
+            current_square_num = row * GRID_SIZE + col;
         }
-        current_square_num = row * GRID_SIZE + col;
-    }
 }
 
 
@@ -134,120 +134,114 @@ static void load_puzzle(char *input_puzzle)
 
 static bool fill_square(int row, int col)
 {
-    int curr_num = grid[row][col];
-    int first_try = curr_num;
-    
-    if (curr_num == 0)
-    {
-        first_try = 1;
-    }
-    
-    for (int num = first_try; num <= GRID_SIZE; num++)
-    {
-        if (num_allowed(row, col, num))
+        int curr_num = grid[row][col];
+        int first_try = curr_num;
+
+        if (curr_num == 0)
         {
-            grid[row][col] = num;
-            return true;
+            first_try = 1;
         }
-    }
-    grid[row][col] = 0;
-    return false;
+
+        for (int num = first_try; num <= GRID_SIZE; num++)
+        {
+            if (num_allowed(row, col, num))
+            {
+                grid[row][col] = num;
+                return true;
+            }
+        }
+        grid[row][col] = 0;
+        return false;
 }
 
 
 static bool num_allowed(int row, int col, int num)
 {
-    int m_row = min_row(row);
-    int m_col = min_col(col);
+        int m_row = min_row(row);
+        int m_col = min_col(col);
 
-    if (!row_contains(row, num) &&
-        !col_contains(col, num) &&
-        !box_contains(m_row, m_col, num))
-    {
-        return true;
-    }
-    
-    return false;
+        if (!row_contains(row, num) &&
+            !col_contains(col, num) &&
+            !box_contains(m_row, m_col, num))
+        {
+            return true;
+        }
+        return false;
 }
 
 
 static bool row_contains(int row, int find)
 {
-    for (int col = 0; col < GRID_SIZE; col++)
-    {
-        if (grid[row][col] == find)
-        {
-            return true;
-        }
-    }
-    
-    return false;
-}
-
-
-static bool col_contains(int col, int find)
-{
-    for (int row = 0; row < GRID_SIZE; row++)
-    {
-        if (grid[row][col] == find)
-        {
-            return true;
-        }
-    }
-    
-    return false;
-}
-
-
-static bool box_contains(int min_row, int min_col, int find)
-{
-    int max_row = min_row + (GRID_SIZE / SUB_GRID);
-    int max_col = min_col + (GRID_SIZE / SUB_GRID);
-    
-    for (int row = min_row; row < max_row; row++)
-    {
-        for (int col = min_col; col < max_col; col++)
+        for (int col = 0; col < GRID_SIZE; col++)
         {
             if (grid[row][col] == find)
             {
                 return true;
             }
         }
-    }
-    
-    return false;
+        return false;
+}
+
+
+static bool col_contains(int col, int find)
+{
+        for (int row = 0; row < GRID_SIZE; row++)
+        {
+            if (grid[row][col] == find)
+            {
+                return true;
+            }
+        }
+        return false;
+}
+
+
+static bool box_contains(int min_row, int min_col, int find)
+{
+        int max_row = min_row + (GRID_SIZE / SUB_GRID);
+        int max_col = min_col + (GRID_SIZE / SUB_GRID);
+
+        for (int row = min_row; row < max_row; row++)
+        {
+            for (int col = min_col; col < max_col; col++)
+            {
+                if (grid[row][col] == find)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
 }
 
 
 static int min_col(int col)
 {
-    int min_col = 0;
+        int min_col = 0;
 
-    if (col >= 2 * SUB_GRID)
-    {
-        min_col = 2 * SUB_GRID;
-    }
-    else if (col >= SUB_GRID)
-    {
-        min_col = SUB_GRID;
-    }
-    
-    return min_col;
+        if (col >= 2 * SUB_GRID)
+        {
+            min_col = 2 * SUB_GRID;
+        }
+        else if (col >= SUB_GRID)
+        {
+            min_col = SUB_GRID;
+        }
+        return min_col;
 }
 
 
 static int min_row(int row)
 {
-    int min_row = 0;
+        int min_row = 0;
 
-    if (row >= 2 * SUB_GRID)
-    {
-        min_row = 2 * SUB_GRID;
-    }
-    else if (row >= SUB_GRID)
-    {
-        min_row = SUB_GRID;
-    }
-    
-    return min_row;
+        if (row >= 2 * SUB_GRID)
+        {
+            min_row = 2 * SUB_GRID;
+        }
+        else if (row >= SUB_GRID)
+        {
+            min_row = SUB_GRID;
+        }
+        return min_row;
 }
