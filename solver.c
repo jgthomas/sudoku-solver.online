@@ -25,6 +25,7 @@ static bool fill_square(int row, int col);
 static void load_puzzle(char *input_puzzle);
 static void solve_puzzle();
 static void *extract_solution(char *puzzle_solution);
+static void clear_part_of_puzzle();
 
 
 int main(void)
@@ -38,6 +39,7 @@ char EMSCRIPTEN_KEEPALIVE *solution(char *problem)
 {
         load_puzzle(problem);
         solve_puzzle();
+        clear_part_of_puzzle();
         return extract_solution(problem);
 }
 
@@ -241,4 +243,16 @@ static int min_row(int row)
             min_row = SUB_GRID;
         }
         return min_row;
+}
+
+
+static void clear_part_of_puzzle()
+{
+        for (int row = 0; row < GRID_SIZE; row++)
+        {
+                for (int col = 0; col < GRID_SIZE; col++)
+                {
+                        part_of_puzzle[row][col] = 0;
+                }
+        }
 }
