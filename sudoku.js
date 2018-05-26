@@ -6,8 +6,8 @@ function buildInputPuzzle() {
     const inputPuzzle = new Array(NUM_OF_SQUARES).fill(EMPTY_SQUARE);
     for (let i = 0; i < NUM_OF_SQUARES; i++) {
         let number = document.getElementById(`box${i}`).value;
-        if (number) {
-            inputPuzzle[i] = number;
+        if (number != null && number.length > 0) {
+            inputPuzzle[i] = number[0];
         }
     }
     return inputPuzzle.join("");
@@ -50,5 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const puzzle = buildInputPuzzle();
         const solution = solvePuzzle(puzzle);
         displayPuzzle(solution);
+        console.log(solution);
     });
 });
