@@ -10,7 +10,7 @@ body {
 
 .outer-box {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   grid-gap: 0.5em;
   background-color: #fff;
   color: #444;
@@ -21,12 +21,10 @@ body {
 
 .inner-box {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   grid-gap: 0.25em;
   background-color: #fff;
   color: #444;
-  width: 97%;
-  height: 33%;
 }
 
 .box {
@@ -36,8 +34,6 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  width: 97%;
-  height: 32%;
 }
 
 .number-input {
