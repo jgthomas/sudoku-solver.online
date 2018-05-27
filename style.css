@@ -10,44 +10,47 @@ body {
 
 .outer-box {
   display: grid;
-  grid-template-columns: 150px 150px 150px;
-  grid-gap: 5px;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 0.5em;
   background-color: #fff;
   color: #444;
   margin: auto;
-  width: 450px;
+  width: 60%;
 }
 
 .inner-box {
   display: grid;
-  grid-template-columns: 50px 50px 50px;
-  grid-gap: 1px;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 0.25em;
   background-color: #fff;
   color: #444;
+  width: 97%;
+  height: 33%;
 }
 
 .box {
   background-color: #444;
   color: #fff;
   font-size: 150%;
-  height: 49px;
-  width: 49px;
   display: grid;
   align-items: center;
   justify-items: center;
+  width: 97%;
+  height: 32%;
 }
 
 .number-input {
   font-size: 150%;
   background-color: #444;
   color: #fff;
-  width: 50%;
-  height: 75%;
+  width: 99%;
+  height: 98%;
   margin: auto;
   border: none;
   display: grid;
   align-items: center;
   justify-items: center;
+  text-align: center;
 }
 
 .solve-buttons {
