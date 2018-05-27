@@ -37,16 +37,13 @@ body {
 }
 
 .number-input {
-  font-size: 150%;
+  font-size: 250%;
   background-color: #444;
   color: #fff;
   width: 99%;
   height: 98%;
   margin: auto;
   border: none;
-  display: grid;
-  align-items: center;
-  justify-items: center;
   text-align: center;
 }
 
