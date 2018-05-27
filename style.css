@@ -15,7 +15,8 @@ body {
   background-color: #fff;
   color: #444;
   margin: auto;
-  width: 60%;
+  width: 65%;
+  max-width: 600px;
 }
 
 .inner-box {
