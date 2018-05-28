@@ -5,7 +5,8 @@ body {
 .title {
         text-align: center;
         color: #444;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
+        font-size: 5em;
 }
 
 .outer-box {
@@ -53,4 +54,13 @@ body {
         align-items: center;
         justify-content: center;
         margin-top: 5em;
+}
+
+
+/*modify for DESKTOP*/
+@media only screen and (min-device-width: 961px) {
+        .title {
+                font-size: 3em;
+                margin-bottom: 2em;
+        }
 }
