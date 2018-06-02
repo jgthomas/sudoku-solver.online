@@ -76,14 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("solve").addEventListener("click", () => {
-        console.log(buildInputPuzzle());
         const puzzle = buildInputPuzzle();
         currentPuzzle.problem = puzzle;
-        console.log(currentPuzzle.problem);
         const solution = solvePuzzle(puzzle);
         currentPuzzle.solution = solution;
-        console.log(currentPuzzle.solution);
         displayPuzzle(solution);
-        console.log(solution);
     });
 });
