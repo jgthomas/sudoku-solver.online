@@ -53,13 +53,13 @@ body {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-        width: 600px;
+        width: 800px;
         margin: auto;
         margin-top: 8em;
 }
 
 .puzzle-button {
-        width: 200px;
+        width: 250px;
         height: 100px;
         font-size: 250%;
         border: none;
