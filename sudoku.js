@@ -4,6 +4,11 @@ const NUM_OF_SQUARES = 81;
 const EMPTY_SQUARE = "0";
 
 
+function puzzleLoaded() {
+    return currentPuzzle.problem !== "" && currentPuzzle.solution !== ""
+}
+
+
 function buildInputPuzzle() {
     const inputPuzzle = new Array(NUM_OF_SQUARES).fill(EMPTY_SQUARE);
     for (let i = 0; i < NUM_OF_SQUARES; i++) {
@@ -49,12 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggleButton = document.getElementById("toggle");
     const currText = toggleButton.innerText;
     toggleButton.addEventListener("click", () => {
-        if (toggleButton.innerText === currText) {
-            displayPuzzle(currentPuzzle.problem);
-            toggleButton.innerText = "Solution";
-        } else {
-            displayPuzzle(currentPuzzle.solution);
-            toggleButton.innerText = currText;
+        if (puzzleLoaded()) {
+            if (toggleButton.innerText === currText) {
+                displayPuzzle(currentPuzzle.problem);
+                toggleButton.innerText = "Solution";
+            } else {
+                displayPuzzle(currentPuzzle.solution);
+                toggleButton.innerText = currText;
+            }
         }
     });
 });
