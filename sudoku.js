@@ -44,9 +44,15 @@ function displayPuzzle(puzzle) {
 function clearPuzzle() {
     for (let i = 0; i < NUM_OF_SQUARES; i++) {
         document.getElementById(`box${i}`).value = "";
-        currentPuzzle.problem = "";
-        currentPuzzle.solution = "";
     }
+    currentPuzzle.problem = "";
+    currentPuzzle.solution = "";
+}
+
+
+function loadPuzzle() {
+    currentPuzzle.problem = buildInputPuzzle();
+    currentPuzzle.solution = solvePuzzle(currentPuzzle.problem);
 }
 
 
@@ -71,11 +77,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 solveButton.innerText = currText;
             }
         } else {
-            const puzzle = buildInputPuzzle();
-            currentPuzzle.problem = puzzle;
-            const solution = solvePuzzle(puzzle);
-            currentPuzzle.solution = solution;
-            displayPuzzle(solution);
+            loadPuzzle();
+            displayPuzzle(currentPuzzle.solution);
             solveButton.innerText = "Problem";
         }
     });
