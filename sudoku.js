@@ -51,35 +51,32 @@ function clearPuzzle() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.getElementById("toggle");
-    const currText = toggleButton.innerText;
-    toggleButton.addEventListener("click", () => {
-        if (puzzleLoaded()) {
-            if (toggleButton.innerText === currText) {
-                displayPuzzle(currentPuzzle.problem);
-                toggleButton.innerText = "Solution";
-            } else {
-                displayPuzzle(currentPuzzle.solution);
-                toggleButton.innerText = currText;
-            }
-        }
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("clear").addEventListener("click", () => {
         clearPuzzle();
+        document.getElementById("solve").innerText = "Solution";
     });
 });
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("solve").addEventListener("click", () => {
-        const puzzle = buildInputPuzzle();
-        currentPuzzle.problem = puzzle;
-        const solution = solvePuzzle(puzzle);
-        currentPuzzle.solution = solution;
-        displayPuzzle(solution);
+    const solveButton = document.getElementById("solve");
+    const currText = solveButton.innerText;
+    solveButton.addEventListener("click", () => {
+        if (puzzleLoaded()) {
+            if (solveButton.innerText === currText) {
+                displayPuzzle(currentPuzzle.solution);
+                solveButton.innerText = "Problem";
+            } else {
+                displayPuzzle(currentPuzzle.problem);
+                solveButton.innerText = currText;
+            }
+        } else {
+            const puzzle = buildInputPuzzle();
+            currentPuzzle.problem = puzzle;
+            const solution = solvePuzzle(puzzle);
+            currentPuzzle.solution = solution;
+            displayPuzzle(solution);
+            solveButton.innerText = "Problem";
+        }
     });
 });
