@@ -2,6 +2,8 @@
 
 The puzzle-solving logic is written in C and compiled to webassembly.
 
+****
+
 ## 1. Enter a sudoku puzzle
 
 ![puzzle](images/puzzle.png)
