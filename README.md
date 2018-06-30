@@ -1,11 +1,15 @@
 # Sudoku solver
 
+The puzzle solving logic is written in C and compiled to webassembly.
+
+### Use
+
 * Enter a sudoku puzzle
 
-![puzzle](static/images/puzzle.png)
+![puzzle](images/puzzle.png)
 
 * Click the *solution* button to solve the puzzle
 
-![solved](static/images/solved.png)
+![solved](images/solved.png)
 
 * You can now toggle back and forth between the puzzle and the solution
