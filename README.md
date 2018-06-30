@@ -1,8 +1,6 @@
 # Sudoku solver
 
-The puzzle-solving logic is written in C and compiled to webassembly.
-
-****
+#### The puzzle-solving logic is written in C and compiled to webassembly.
 
 ## 1. Enter a sudoku puzzle
 
